@@ -89,8 +89,6 @@ HP(:, ref_bus) = []; % remove ref bus col
 
 % gain matrices
 GP = HP'*WP*HP; GQ = HQ'*WQ*HQ;
-if rcond(GP)<1e-12, GP = GP + 1e-4*eye(size(GP)); warning('regularizing GP'); end
-if rcond(GQ)<1e-12, GQ = GQ + 1e-4*eye(size(GQ)); warning('regularizing GQ'); end
 
 % estimation loop
 V = ones(nb,1); delta = zeros(nb,1); N = 0;
@@ -140,4 +138,5 @@ for iter = 1:maxiter
 end
 if N==0, N=maxiter; end
 time = toc(tstart);
+
 end
